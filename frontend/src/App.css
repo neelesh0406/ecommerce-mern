@@ -25,3 +25,11 @@
   width: auto;
   height: 350px;
 }
+
+/* Form  */
+.add-product-form form > div {
+  width: 50%;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+}

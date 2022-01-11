@@ -9,6 +9,8 @@
   "author": "Neelesh",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
     "@mui/material": "^5.2.8",
     "express": "^4.17.2",
     "mongoose": "^6.1.5",

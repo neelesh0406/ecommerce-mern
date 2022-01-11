@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import Nav from './Nav';
 import './App.css';
-import { BrowserRouter, Link, Route, Routes, useParams } from "react-router-dom";
-
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
+import { Nav, Home, AddProduct } from './components/index';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -20,30 +19,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Home products={products} />} />
         <Route path='/products/:id' element={<SingleProduct />} />
+        <Route path='/products/add' element={<AddProduct />} />
       </Routes>
     </div>
   </BrowserRouter>
     ;
-}
-
-const Home = ({ products }) => {
-  return <div className="products-catalog">
-    {products.map((item) => {
-      return <div className="product" key={item._id}>
-        <Link to={`/products/${item._id}`}>
-          <div className="product-top">
-            <img src={item.imgUrl} />
-          </div>
-          <div className="product-bottom">
-            <h2>{item.name}</h2>
-            <span>{item.description}</span>
-            <span>In stock: {item.quantity}</span>
-            <span>Category: {item.category}</span>
-          </div>
-        </Link>
-      </div>
-    })}
-  </div>
 }
 
 const SingleProduct = () => {
