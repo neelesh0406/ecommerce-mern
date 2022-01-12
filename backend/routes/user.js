@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/Users');
+const crypto = require('crypto-js'); //For hashing password
+const secretKey = require('../config/secretKey');
 
 // @route - POST /api/users
 // @desc  - Register User
@@ -7,7 +9,9 @@ const User = require('../models/Users');
 router.post('/', async (req, res) => {
     const registeringUser = {
         email: req.body.email,
-        password: req.body.password,
+        password: crypto.AES
+            .encrypt(req.body.password, secretKey)
+            .toString(),
         fullName: req.body.fullName,
         isAdmin: req.body.isAdmin
     }
