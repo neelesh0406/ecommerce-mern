@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Nav, Home, AddProduct, SingleProduct, SignUp } from './components/index'; //Single file that contains imports of all components
+import { Nav, Home, AddProduct, SingleProduct, SignUp, SignIn, Profile } from './components/index'; //Single file that contains imports of all components
+import { getProductsUrl } from "./helpers/url";
 
 function App() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const url = "/api/products";
-    fetch(url)
+    //get request to "http:localhost:8000//api/products"
+    fetch(getProductsUrl)
       .then(response => response.json())
       .then(data => setProducts(data));
   }, [])
@@ -21,6 +22,8 @@ function App() {
         <Route path='/products/:id' element={<SingleProduct />} />
         <Route path='/products/add' element={<AddProduct />} />
         <Route path='/users/signup' element={<SignUp />} />
+        <Route path='/users/signin' element={<SignIn />} />
+        <Route path='/users/profile' element={<Profile />} />
       </Routes>
     </div>
   </BrowserRouter>

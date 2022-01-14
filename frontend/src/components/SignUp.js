@@ -4,6 +4,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import { signUpUrl } from '../helpers/url'; //url from helpers folder
 
 export default function SignUp() {
 
@@ -16,25 +17,37 @@ export default function SignUp() {
     const handleAddUser = (e) => {
         e.preventDefault();
 
-        const newUser = {
-            email,
-            password,
-            fullName,
-            isAdmin
-        }
+        if (password === confirmPassword) {
+            const newUser = {
+                email,
+                password,
+                fullName,
+                isAdmin
+            }
 
-        const url = '/api/users';
-        fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newUser)
-        })
-            .then(response => response.json())
-            .then(data => console.log("REsponse on front user: ", data))
+
+            fetch(signUpUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newUser)
+            })
+                .then(response => response.json())
+                .then(data => console.log("REsponse on front user: ", data))
+
+            setEmail('');
+            setPassword('');
+            setConfirmPassword('');
+            setFullName('')
+            setIsAdmin(false)
+        } else {
+            //When passwords don't match
+            //send alert //TODO
+        }
     }
 
     return (
         <div className='add-product-form'>
+            <h1>Sign up</h1>
             <form onSubmit={e => handleAddUser(e)}>
                 <div>
                     <TextField value={fullName} onChange={e => setFullName(e.target.value)} label="Name" variant="outlined" type="text" required />

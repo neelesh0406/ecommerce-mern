@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button, TextField } from '@mui/material';
+import { addProductUrl } from '../helpers/url';
 
 export default function AddProduct() {
 
@@ -23,8 +24,7 @@ export default function AddProduct() {
         }
 
         //This POST req goes to "http://localhost:3000/api/products" on the backend to add it to Mongo db
-        const url = "/api/products"
-        fetch(url, {
+        fetch(addProductUrl, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newProduct)
@@ -36,6 +36,7 @@ export default function AddProduct() {
 
     return (
         <div className='add-product-form'>
+            <h1>Add product details</h1>
             <form onSubmit={e => handleAddProduct(e)}>
                 <div>
                     <TextField value={name} onChange={e => setName(e.target.value)} label="Name" variant="filled" type="text" />

@@ -1,3 +1,5 @@
-const secretKey = "secretKey123";
+const cryptoJsSecretKey = "secretKey123";
+const JWTSecret = "secretKey123";
+
 // Used for hashing with crypto-js
-module.exports = secretKey
+module.exports = cryptoJsSecretKey, JWTSecret
