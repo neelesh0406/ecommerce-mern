@@ -13,7 +13,7 @@ const productSchema = new mongoose.Schema({
         type: String,
         default: "Default description.."
     },
-    quantity: {
+    inStock: {
         type: Number,
         required: true,
         default: 1,

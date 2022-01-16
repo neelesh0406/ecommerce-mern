@@ -26,11 +26,6 @@ export default function Nav() {
             {isLoggedIn ?
                 <>
                     <Link to="#" onClick={handleLogOut}> Log out {user.fullName} </Link>
-                    <Link to='/cart'>
-                        <Badge badgeContent={cartQuantity} color="secondary">
-                            <ShoppingCart />
-                        </Badge>
-                    </Link>
                 </>
                 :
                 <div>
@@ -38,6 +33,11 @@ export default function Nav() {
                     <Link to="/users/signin"> Sign In </Link>
                 </div>
             }
+            <Link to='/cart'>
+                <Badge badgeContent={cartQuantity} color="secondary">
+                    <ShoppingCart />
+                </Badge>
+            </Link>
         </div>
     )
 }

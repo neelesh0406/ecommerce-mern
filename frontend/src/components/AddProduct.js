@@ -7,7 +7,7 @@ export default function AddProduct() {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState('');
-    const [quantity, setQuantity] = useState('');
+    const [inStock, setinStock] = useState('');
     const [imgUrl, setImgUrl] = useState('');
     const [category, setCategory] = useState('');
 
@@ -18,7 +18,7 @@ export default function AddProduct() {
             name,
             price,
             description,
-            quantity,
+            inStock,
             imgUrl,
             category
         }
@@ -42,7 +42,7 @@ export default function AddProduct() {
                     <TextField value={name} onChange={e => setName(e.target.value)} label="Name" variant="filled" type="text" />
                     <TextField value={price} onChange={e => setPrice(e.target.value)} label="price" variant="filled" type="number" />
                     <TextField value={description} onChange={e => setDescription(e.target.value)} label="description" variant="filled" type="text" />
-                    <TextField value={quantity} onChange={e => setQuantity(e.target.value)} label="quantity" variant="filled" type="text" />
+                    <TextField value={inStock} onChange={e => setinStock(e.target.value)} label="inStock" variant="filled" type="text" />
                     <TextField value={imgUrl} onChange={e => setImgUrl(e.target.value)} label="imgUrl" variant="filled" type="text" />
                     <TextField value={category} onChange={e => setCategory(e.target.value)} label="category" variant="filled" type="text" />
                 </div>

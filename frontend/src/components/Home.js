@@ -22,7 +22,6 @@ export default function Home({ products }) {
     }, [])
 
     const handleAddToCart = (item) => {
-        console.log("Add to cart clicked: ", item);
         dispatch({ type: ADD_TO_CART, value: item });
     }
 
@@ -36,7 +35,7 @@ export default function Home({ products }) {
                     <div className="product-bottom">
                         <h2>{item.name}</h2>
                         <span>{item.description}</span>
-                        <span>In stock: {item.quantity}</span>
+                        <span>In stock: {item.inStock}</span>
                         <span>Category: {item.category}</span>
                     </div>
                 </Link>
