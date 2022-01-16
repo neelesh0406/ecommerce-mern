@@ -5,7 +5,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import jwtDecode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
-import { USER_AUTHENTICATE } from '../action';
+import { ADD_TO_CART, USER_AUTHENTICATE } from '../action';
 
 export default function Home({ products }) {
 
@@ -21,6 +21,11 @@ export default function Home({ products }) {
 
     }, [])
 
+    const handleAddToCart = (item) => {
+        console.log("Add to cart clicked: ", item);
+        dispatch({ type: ADD_TO_CART, value: item });
+    }
+
     return <div className="products-catalog">
         {products.map((item) => {
             return <div className="product" key={item._id}>
@@ -35,7 +40,7 @@ export default function Home({ products }) {
                         <span>Category: {item.category}</span>
                     </div>
                 </Link>
-                <Button variant="contained" size="small" startIcon={<AddShoppingCartIcon />} style={{ width: "150px", margin: "3px auto" }}>Add to cart</Button>
+                <Button onClick={() => handleAddToCart(item)} variant="contained" size="small" startIcon={<AddShoppingCartIcon />} style={{ width: "150px", margin: "3px auto" }}>Add to cart</Button>
                 <Button variant="contained" size="small" startIcon={<LocalMallIcon />} style={{ width: "150px", margin: "3px auto" }}>Buy now</Button>
             </div>
         })}

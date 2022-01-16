@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Nav, Home, AddProduct, SingleProduct, SignUp, SignIn, Profile } from './components/index'; //Single file that contains imports of all components
+import { Nav, Home, AddProduct, SingleProduct, SignUp, SignIn, Profile, Cart } from './components/index'; //Single file that contains imports of all components
 import { getProductsUrl } from "./helpers/url";
 import { useDispatch, useSelector } from "react-redux";
 import jwtDecode from "jwt-decode";
@@ -11,7 +11,6 @@ import { USER_AUTHENTICATE } from "./action";
 function App() {
   const [products, setProducts] = useState([]);
 
-  const count = useSelector(state => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,8 +18,6 @@ function App() {
     fetch(getProductsUrl)
       .then(response => response.json())
       .then(data => setProducts(data));
-
-    console.log("Redux state: ", count);
 
     if (localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
@@ -41,6 +38,8 @@ function App() {
         <Route path='/users/signup' element={<SignUp />} />
         <Route path='/users/signin' element={<SignIn />} />
         <Route path='/users/profile' element={<Profile />} />
+        <Route path='/users/profile' element={<Profile />} />
+        <Route path='/cart' element={<Cart />} />
       </Routes>
     </div>
   </BrowserRouter>
