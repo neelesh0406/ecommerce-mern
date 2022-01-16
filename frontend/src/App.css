@@ -45,6 +45,10 @@
   flex-direction: column;
   border-radius: 15px;
   box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, 0.103);
+  transition: all 0.2s;
+}
+.product:hover {
+  box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, 0.17);
 }
 
 .product-top {

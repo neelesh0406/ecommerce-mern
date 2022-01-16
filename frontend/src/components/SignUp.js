@@ -5,6 +5,9 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { signUpUrl } from '../helpers/url'; //url from helpers folder
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { USER_SIGNUP } from '../action';
 
 export default function SignUp() {
 
@@ -13,6 +16,9 @@ export default function SignUp() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [fullName, setFullName] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleAddUser = (e) => {
         e.preventDefault();
@@ -32,7 +38,15 @@ export default function SignUp() {
                 body: JSON.stringify(newUser)
             })
                 .then(response => response.json())
-                .then(data => console.log("REsponse on front user: ", data))
+                .then(data => {
+                    if (data.token) {
+                        // If details are correct and we receive a token
+                        localStorage.setItem('token', data.token);
+                        dispatch({ type: USER_SIGNUP, value: { email, fullName, isAdmin } })
+                        navigate('/');
+                    }
+                    return
+                })
 
             setEmail('');
             setPassword('');

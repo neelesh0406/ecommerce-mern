@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { Button, TextField } from '@mui/material';
 import { signInUrl } from '../helpers/url';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 export default function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const navigate = useNavigate(); //Previously useHistory in v5
+    const isLoggedIn = useSelector(state => state.isLoggedIn);
+    const navigate = useNavigate('');
 
     const handleLoginUser = (e) => {
         e.preventDefault();
@@ -22,6 +25,7 @@ export default function SignIn() {
                 if (data.token) {
                     // If details are correct and we receive a token
                     localStorage.setItem('token', data.token);
+                    //redirect to '/' while logging in
                     navigate('/');
                 }
                 console.log("Reponse while logging in", data);
@@ -29,6 +33,10 @@ export default function SignIn() {
 
         setEmail('');
         setPassword('');
+    }
+
+    if (isLoggedIn) {
+        return <Navigate to='/' />
     }
 
     return (

@@ -1,10 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@mui/material'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
+import jwtDecode from 'jwt-decode';
+import { useDispatch } from 'react-redux';
+import { USER_AUTHENTICATE } from '../action';
 
 export default function Home({ products }) {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            const token = localStorage.getItem('token');
+            const { email, name } = jwtDecode(token);
+
+            dispatch({ type: USER_AUTHENTICATE, value: { email, fullName: name } })
+        }
+
+    }, [])
+
     return <div className="products-catalog">
         {products.map((item) => {
             return <div className="product" key={item._id}>

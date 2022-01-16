@@ -26,9 +26,27 @@ router.post('/signup', async (req, res) => {
         res.json({ success: false, message: "Signup failed, user already exists" });
     } else {
         const newUser = new User(registeringUser);
-        await newUser.save();
-        res.status(201);
-        res.json({ success: true, message: "Signup success" });
+        const addedUser = await newUser.save();
+        const payload = {
+            id: addedUser._id,
+            email: addedUser.email,
+            name: addedUser.fullName
+        }
+        //This payload will be sent inside the token to the front end
+        jwt.sign(
+            payload,
+            JWTSecret,
+            { expiresIn: 86400 },
+            (err, token) => {
+                if (err) return res.json({ message: "err in token" })
+                return res.json({
+                    message: "success",
+                    token: "Bearer " + token
+                })
+            }
+        )
+        // res.status(201);
+        // res.json({ success: true, message: "Signup success" });
     }
 })
 
@@ -50,6 +68,7 @@ router.post('/signin', async (req, res) => {
             const payload = {
                 id: dbUser._id,
                 email: dbUser.email,
+                name: dbUser.fullName
             }
             //This payload will be sent inside the token to the front end
             jwt.sign(
@@ -84,5 +103,7 @@ router.post('/signin', async (req, res) => {
 router.get('/profile', verifyJWT, async (req, res) => {
     res.json({ isLoggedIn: true, email: req.user.email });
 })
+
+
 
 module.exports = router;

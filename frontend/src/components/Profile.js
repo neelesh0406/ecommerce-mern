@@ -12,7 +12,7 @@ export default function Profile() {
             }
         })
             .then(response => response.json())
-            .then(data => data.isLoggedIn ? navigate('/') : navigate('/users/signin'));
+            .then(data => data.isLoggedIn ? null : navigate('/users/signin'));
 
     }, [])
     return (
