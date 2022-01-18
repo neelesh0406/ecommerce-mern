@@ -5,6 +5,7 @@ const cryptoJsSecretKey = require('../config/secretKey');
 const JWTSecret = require('../config/secretKey');
 const jwt = require('jsonwebtoken');
 const verifyJWT = require('../middleware/auth');
+const req = require('express/lib/request');
 
 // @route - POST /api/users/signup
 // @desc  - Register User
@@ -104,6 +105,24 @@ router.get('/profile', verifyJWT, async (req, res) => {
     res.json({ isLoggedIn: true, email: req.user.email });
 })
 
+// router.put('/:id', async (req, res) => {
+//     // const id = req.params.id;
+//     try {
+//         const updateUser = await User.updateMany({
+//             $set: {
+//                 address: {
+//                     fullAddress: "Test address"
+//                 }
+//             }
+//         }, {
+//             new: true
+//         });
+//         res.status(200).json(updateUser);
+
+//     } catch (err) {
+//         console.log(err);
+//     }
+// })
 
 
 module.exports = router;

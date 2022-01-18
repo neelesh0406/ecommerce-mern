@@ -1,4 +1,4 @@
-import { ADD_TO_CART, DECREASE_CART_QUANTITY, INCREASE_CART_QUANTITY, REMOVE_FROM_CART } from "../action"
+import { ADD_TO_CART, CLEAR_CART, DECREASE_CART_QUANTITY, INCREASE_CART_QUANTITY, REMOVE_FROM_CART } from "../action"
 
 const initialCartState = {
     items: [],
@@ -15,17 +15,22 @@ export const cart = (state = initialCartState, action) => {
             // If already present in cart, update quantity : update the quantity + 1
             const isPresent = state.items.find(element => element._id === item._id); //check if item exist in array
 
+            let updateQuantity = true; // When ADD to cart is clicked multiple times, this will come in play
             if (isPresent) {
                 const newArr = state.items.filter(element => {
                     if (element._id === item._id) {
-                        element.quantity += 1;
+                        if (element.quantity < element.inStock) {
+                            element.quantity += 1
+                        } else {
+                            updateQuantity = false;
+                        }
                     }
                     return element;
                 })
                 return {
                     items: newArr,
-                    cartQuantity: state.cartQuantity + 1,
-                    cartTotal: state.cartTotal + item.price
+                    cartQuantity: updateQuantity ? state.cartQuantity + 1 : state.cartQuantity,
+                    cartTotal: updateQuantity ? state.cartTotal + item.price : state.cartTotal
                 }
             }
             // If new item added for first time
@@ -87,6 +92,12 @@ export const cart = (state = initialCartState, action) => {
                     cartQuantity: state.cartQuantity - 1,
                     cartTotal: newTotal
                 }
+            }
+        case CLEAR_CART:
+            return {
+                items: [],
+                cartQuantity: 0,
+                cartTotal: 0
             }
         default: return state
     }

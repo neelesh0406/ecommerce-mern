@@ -37,9 +37,9 @@ export default function CartItem({ id, name, price, inStock, imgUrl, quantity })
                 <p>In stock: {inStock}</p>
             </div>
             <div className="cart-btn">
-                <button disabled={quantity >= inStock} onClick={() => handelIncrease(id)}><AddCircleIcon style={{ cursor: "pointer", fontSize: "25px" }} /></button>
-                <span>{quantity}</span>
                 <button disabled={quantity <= 1} onClick={() => handelDecrease(id)}><RemoveCircleIcon style={{ cursor: "pointer", fontSize: "25px" }} /></button>
+                <span>{quantity}</span>
+                <button disabled={quantity >= inStock} onClick={() => handelIncrease(id)}><AddCircleIcon style={{ cursor: "pointer", fontSize: "25px" }} /></button>
             </div>
         </div>
     )

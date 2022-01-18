@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
     isAdmin: {
         type: String,
         default: false
+    },
+    address: {
+        type: Object,
+        default: {}
     }
 }, { timestamps: true }
 )

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Nav, Home, AddProduct, SingleProduct, SignUp, SignIn, Profile, Cart } from './components/index'; //Single file that contains imports of all components
+import { Nav, Home, AddProduct, SingleProduct, SignUp, SignIn, Profile, Cart, Checkout, Orders, SingleOrder } from './components/index'; //Single file that contains imports of all components
 import { getProductsUrl } from "./helpers/url";
 import { useDispatch, useSelector } from "react-redux";
 import jwtDecode from "jwt-decode";
@@ -39,6 +39,9 @@ function App() {
         <Route path='/users/signin' element={<SignIn />} />
         <Route path='/users/profile' element={<Profile />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/checkout' element={<Checkout />} />
+        <Route path='/orders' element={<Orders />} />
+        <Route path='/orders/:id' element={<SingleOrder />} />
       </Routes>
     </div>
   </BrowserRouter>

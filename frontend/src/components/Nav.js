@@ -38,6 +38,7 @@ export default function Nav() {
                     <ShoppingCart />
                 </Badge>
             </Link>
+            <Link to='/orders'>Orders</Link>
         </div>
     )
 }

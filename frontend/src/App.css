@@ -144,6 +144,69 @@
   border: none;
 }
 
+/* Orders page */
+.orders {
+  width: 80%;
+  margin: 100px auto;
+  padding: 80px 20px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, 0.103);
+}
+.orders a {
+  color: blueviolet;
+}
+
+/* Single order */
+.single-order-summary {
+  width: 60%;
+  margin: 30px auto;
+  padding: 30px 20px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, 0.103);
+}
+.single-order-summary > h1 {
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+.summary-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.summary-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.summary-h2 {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 6px;
+  color: grey;
+}
+.summary-text {
+  font-size: 18px;
+}
+.summary-address {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.summary-total {
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-text2 {
+  font-size: 20px;
+}
+
 @media (max-width: 1000px) {
   /* Cart */
   .cart {
