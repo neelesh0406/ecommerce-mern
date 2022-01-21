@@ -207,6 +207,25 @@
   font-size: 20px;
 }
 
+/* Admin page /admin */
+.admin {
+  display: flex;
+  position: relative;
+}
+.admin-sidebar {
+  background-color: black;
+  flex: 0.2;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+.admin-main {
+  background-color: grey;
+  flex: 0.8;
+  height: 100vh;
+}
+
 @media (max-width: 1000px) {
   /* Cart */
   .cart {

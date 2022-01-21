@@ -39,6 +39,7 @@ export default function Nav() {
                 </Badge>
             </Link>
             <Link to='/orders'>Orders</Link>
+            <Link to='/admin'>Admin</Link>
         </div>
     )
 }

@@ -15,7 +15,7 @@ export const user = (state = initialUserState, action) => {
         case USER_AUTHENTICATE:
             return {
                 user: action.value,
-                isLoggedIn: true
+                isLoggedIn: true,
             }
         case USER_LOGOUT:
             return {

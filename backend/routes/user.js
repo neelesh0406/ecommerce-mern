@@ -31,7 +31,8 @@ router.post('/signup', async (req, res) => {
         const payload = {
             id: addedUser._id,
             email: addedUser.email,
-            name: addedUser.fullName
+            name: addedUser.fullName,
+            isAdmin: addedUser.isAdmin
         }
         //This payload will be sent inside the token to the front end
         jwt.sign(
@@ -46,8 +47,6 @@ router.post('/signup', async (req, res) => {
                 })
             }
         )
-        // res.status(201);
-        // res.json({ success: true, message: "Signup success" });
     }
 })
 
@@ -69,7 +68,8 @@ router.post('/signin', async (req, res) => {
             const payload = {
                 id: dbUser._id,
                 email: dbUser.email,
-                name: dbUser.fullName
+                name: dbUser.fullName,
+                isAdmin: dbUser.isAdmin
             }
             //This payload will be sent inside the token to the front end
             jwt.sign(
@@ -102,7 +102,7 @@ router.post('/signin', async (req, res) => {
 // @desc  - User Profile
 // @access- PROTECTED
 router.get('/profile', verifyJWT, async (req, res) => {
-    res.json({ isLoggedIn: true, email: req.user.email });
+    res.json({ isLoggedIn: true, email: req.user.email, isAdmin: req.user.isAdmin });
 })
 
 // router.put('/:id', async (req, res) => {

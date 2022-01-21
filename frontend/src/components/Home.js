@@ -14,9 +14,9 @@ export default function Home({ products }) {
     useEffect(() => {
         if (localStorage.getItem('token')) {
             const token = localStorage.getItem('token');
-            const { email, name } = jwtDecode(token);
+            const { email, name, isAdmin } = jwtDecode(token);
 
-            dispatch({ type: USER_AUTHENTICATE, value: { email, fullName: name } })
+            dispatch({ type: USER_AUTHENTICATE, value: { email, fullName: name, isAdmin } })
         }
 
     }, [])

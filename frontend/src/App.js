@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Nav, Home, AddProduct, SingleProduct, SignUp, SignIn, Profile, Cart, Checkout, Orders, SingleOrder } from './components/index'; //Single file that contains imports of all components
+import { Nav, Home, AddProduct, SingleProduct, SignUp, SignIn, Profile, Cart, Checkout, Orders, SingleOrder, Admin } from './components/index'; //Single file that contains imports of all components
 import { getProductsUrl } from "./helpers/url";
 import { useDispatch, useSelector } from "react-redux";
 import jwtDecode from "jwt-decode";
@@ -21,9 +21,10 @@ function App() {
 
     if (localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
-      const { email, name } = jwtDecode(token);
+      const { email, name, isAdmin } = jwtDecode(token);
+      console.log("***** ", jwtDecode(token));
 
-      dispatch({ type: USER_AUTHENTICATE, value: { email, fullName: name } })
+      dispatch({ type: USER_AUTHENTICATE, value: { email, fullName: name, isAdmin } })
     }
 
   }, [])
@@ -42,6 +43,7 @@ function App() {
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/orders' element={<Orders />} />
         <Route path='/orders/:id' element={<SingleOrder />} />
+        <Route path='/admin' element={<Admin />} />
       </Routes>
     </div>
   </BrowserRouter>
