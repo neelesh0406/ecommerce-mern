@@ -12,7 +12,6 @@ export default function AddProduct() {
     const [category, setCategory] = useState('');
 
     const handleAddProduct = (e) => {
-        console.log("Submit");
         e.preventDefault();
         const newProduct = {
             name,
@@ -30,7 +29,13 @@ export default function AddProduct() {
             body: JSON.stringify(newProduct)
         })
             .then(response => response.json())
-            .then(data => console.log("REsponse on front: ", data))
+
+        setName('');
+        setPrice('');
+        setDescription('');
+        setinStock('');
+        setImgUrl('');
+        setCategory('');
 
     }
 
@@ -39,15 +44,15 @@ export default function AddProduct() {
             <h1>Add product details</h1>
             <form onSubmit={e => handleAddProduct(e)}>
                 <div>
-                    <TextField value={name} onChange={e => setName(e.target.value)} label="Name" variant="filled" type="text" />
-                    <TextField value={price} onChange={e => setPrice(e.target.value)} label="price" variant="filled" type="number" />
-                    <TextField value={description} onChange={e => setDescription(e.target.value)} label="description" variant="filled" type="text" />
-                    <TextField value={inStock} onChange={e => setinStock(e.target.value)} label="inStock" variant="filled" type="text" />
-                    <TextField value={imgUrl} onChange={e => setImgUrl(e.target.value)} label="imgUrl" variant="filled" type="text" />
-                    <TextField value={category} onChange={e => setCategory(e.target.value)} label="category" variant="filled" type="text" />
+                    <TextField value={name} onChange={e => setName(e.target.value)} label="Name" variant="filled" type="text" required />
+                    <TextField value={price} onChange={e => setPrice(e.target.value)} label="price" variant="filled" type="number" required />
+                    <TextField value={description} onChange={e => setDescription(e.target.value)} label="description" variant="filled" type="text" required />
+                    <TextField value={inStock} onChange={e => setinStock(e.target.value)} label="inStock" variant="filled" type="text" required />
+                    <TextField value={imgUrl} onChange={e => setImgUrl(e.target.value)} label="imgUrl" variant="filled" type="text" required />
+                    <TextField value={category} onChange={e => setCategory(e.target.value)} label="category" variant="filled" type="text" required />
                 </div>
 
-                <Button type='submit' variant="contained" style={{ display: "block", margin: "auto" }}>Submit</Button>
+                <Button type='submit' variant="contained" style={{ display: "block", margin: "auto", marginTop: "20px" }}>Submit</Button>
             </form>
         </div>
     )

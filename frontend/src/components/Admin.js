@@ -1,7 +1,7 @@
 import jwtDecode from 'jwt-decode';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link, Outlet } from 'react-router-dom';
 import { USER_AUTHENTICATE } from '../action';
 
 export default function Admin() {
@@ -36,10 +36,15 @@ export default function Admin() {
 
     return <div className='admin'>
         <div className="admin-sidebar">
-            <h1>Admin Controls</h1>
-            <div>All orders</div>
-            <div>All products</div>
-            <div>Add product</div>
+            <h1 style={{ marginBottom: "30px", fontWeight: "500", color: "#ff7b41" }}>Admin <br /> Controls</h1>
+            <ul>
+                <li>
+                    <Link to='/admin/products'>ALL PRODUCTS</Link>
+                </li>
+                <li>
+                    <Link to='/admin/orders'>ALL ORDERS</Link>
+                </li>
+            </ul>
         </div>
         {/* sidebar */}
         {/* View all products -> edit/delete , checkbox */}
@@ -47,7 +52,7 @@ export default function Admin() {
         {/* View all orders */}
         {/* main */}
         <div className="admin-main">
-            main
+            <Outlet />
         </div>
     </div>;
 }

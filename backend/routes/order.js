@@ -7,10 +7,17 @@ const router = require('express').Router();
 // @access- PROTECTED
 router.get('/', verifyJWT, async (req, res) => {
     const userId = req.user.id;
-    //consumer 
-    //query, orders m jiska userid 
-    const matchingOrders = await Order.find({ "userId": userId }).sort({ createdAt: -1 });
-    res.status(200).json(matchingOrders);
+    const isAdmin = req.user.isAdmin;
+
+    if (isAdmin) {
+        // For admin
+        const matchingOrders = await Order.find().sort({ createdAt: -1 });
+        res.status(200).json(matchingOrders);
+    } else {
+        //consumer 
+        const matchingOrders = await Order.find({ "userId": userId }).sort({ createdAt: -1 });
+        res.status(200).json(matchingOrders);
+    }
 })
 
 // @route - GET /api/orders/:id

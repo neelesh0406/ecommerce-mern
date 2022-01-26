@@ -82,7 +82,7 @@ export default function SignUp() {
                     </FormControl>
                 </div>
 
-                <Button type='submit' variant="contained" style={{ display: "block", margin: "auto" }}>Register</Button>
+                <Button type='submit' variant="contained" style={{ display: "block", margin: "auto", marginTop: "20px" }}>Register</Button>
             </form>
         </div>
     )

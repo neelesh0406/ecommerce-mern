@@ -22,7 +22,6 @@ export default function Nav() {
     return (
         <div className='nav'>
             <Link to='/'>Home </Link>
-            <Link to='/products/add'> Add product</Link>
             {isLoggedIn ?
                 <>
                     <Link to="#" onClick={handleLogOut}> Log out {user.fullName} </Link>

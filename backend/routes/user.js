@@ -5,7 +5,6 @@ const cryptoJsSecretKey = require('../config/secretKey');
 const JWTSecret = require('../config/secretKey');
 const jwt = require('jsonwebtoken');
 const verifyJWT = require('../middleware/auth');
-const req = require('express/lib/request');
 
 // @route - POST /api/users/signup
 // @desc  - Register User

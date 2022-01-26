@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Product = require('../models/Products');
+const verifyJWT = require('../middleware/auth');
 
 
 // @route - GET /api/product/
@@ -34,5 +35,41 @@ router.get('/:id', async (req, res) => {
     const singleProduct = await Product.findById(req.params.id);
     res.json(singleProduct);
 })
+
+// @route - put /api/product/:id
+// @desc  - Update single product
+// @access- PROTECTED - ADMIN
+router.put('/:id', verifyJWT, async (req, res) => {
+
+    try {
+        const updatedProduct = await Product.findByIdAndUpdate(
+            req.params.id,
+            {
+                $set: req.body,
+            },
+            { new: true }
+        );
+        res.status(200).json(updatedProduct);
+    } catch (err) {
+        res.json(err);
+    }
+
+})
+
+
+// @route - DELETE /api/product/:id
+// @desc  - Delete single product
+// @access- PROTECTED - ADMIN
+router.delete('/:id', verifyJWT, async (req, res) => {
+
+    try {
+        const deleteResponse = await Product.findByIdAndDelete(req.params.id)
+        res.status(200).json(deleteResponse);
+    } catch (err) {
+        res.json(err);
+    }
+
+})
+
 
 module.exports = router;

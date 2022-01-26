@@ -23,6 +23,10 @@ const orderSchema = new mongoose.Schema({
     paymentMethod: {
         type: String,
         required: true
+    },
+    status: {
+        type: String,
+        default: "placed"
     }
 }, { timestamps: true },
 )

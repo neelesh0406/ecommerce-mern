@@ -25,6 +25,10 @@ const productSchema = new mongoose.Schema({
     category: {
         type: String,
         default: "other"
+    },
+    isPublished: {  // For the checkbox on Product screen for admin
+        type: Boolean,
+        default: true
     }
 })
 

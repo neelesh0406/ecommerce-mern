@@ -25,6 +25,9 @@
   color: black;
   font-weight: bold;
 }
+.nav a:hover {
+  color: #4b4b4b;
+}
 
 /* Home - Products */
 .products-catalog {
@@ -51,20 +54,43 @@
   box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, 0.17);
 }
 
+.product a {
+  text-decoration: none;
+  color: black;
+}
+
 .product-top {
   display: flex;
   justify-content: center;
+  margin-bottom: 5px;
 }
 .product-top img {
   width: auto;
   height: 300px;
 }
+.product-mid > span {
+  font-size: 18px;
+}
+.product-mid-text {
+  display: flex;
+  justify-content: space-between;
+  color: #1976d2;
+  font-size: 14px;
+}
+.product-bottom {
+  background-color: #1976d230;
+  text-align: center;
+  padding: 8px;
+  border-radius: 7px;
+  font-size: 17px;
+  letter-spacing: 1px;
+}
 
 /* Form  */
 .add-product-form {
-  width: 50%;
+  width: 700px;
   margin: 100px auto;
-  padding: 80px 0;
+  padding: 60px 0;
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, 0.103);
@@ -84,7 +110,8 @@
 .cart {
   background-color: white;
   width: 50%;
-  margin: 100px auto;
+  margin: 10px auto;
+  margin-top: 50px;
   box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, 0.103);
 }
 
@@ -98,7 +125,6 @@
   padding: 20px;
   border-top: 0.5px solid rgba(0, 0, 0, 0.103);
   text-align: center;
-  background-color: #e3f6ff;
 }
 
 .cart-container {
@@ -146,7 +172,7 @@
 
 /* Orders page */
 .orders {
-  width: 80%;
+  width: 900px;
   margin: 100px auto;
   padding: 80px 20px;
   background-color: white;
@@ -213,18 +239,38 @@
   position: relative;
 }
 .admin-sidebar {
-  background-color: black;
+  background-color: #0e1b4a;
+  color: white;
   flex: 0.2;
-  height: 100vh;
   position: sticky;
   top: 0;
   left: 0;
+  border-top-right-radius: 20px;
+  padding: 30px 10px;
+}
+.admin-sidebar a {
+  text-decoration: none;
+  color: white;
+}
+.admin-sidebar li {
+  margin: 5px 0;
+  padding: 10px 4px;
+  letter-spacing: 1px;
+  font-size: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.admin-sidebar li:hover {
+  background-color: #ff7b41;
 }
 .admin-main {
-  background-color: grey;
+  background-color: #f8f9fa;
   flex: 0.8;
-  height: 100vh;
+  min-height: 100vh;
 }
+
+/* General classes */
 
 @media (max-width: 1000px) {
   /* Cart */
