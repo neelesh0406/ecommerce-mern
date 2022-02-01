@@ -1,33 +1,31 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Nav, Home, AddProduct, SingleProduct, SignUp, SignIn, Profile, Cart, Checkout, Orders, SingleOrder, Admin, AdminProducts, AdminOrders, EditProduct } from './components/index'; //Single file that contains imports of all components
-import { getProductsUrl } from "./helpers/url";
+import { Nav, Home, AddProduct, SingleProduct, SignUp, SignIn, Profile, Cart, Checkout, Orders, SingleOrder, Admin, AdminProducts, AdminOrders, EditProduct, AdminChart } from './components/index'; //Single file that contains imports of all components
 import { useDispatch, useSelector } from "react-redux";
 import jwtDecode from "jwt-decode";
 import { USER_AUTHENTICATE } from "./action";
+import PrivateRoute from "./PrivateRoute";
 
 
 function App() {
   // const [products, setProducts] = useState([]);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
 
-  // useEffect(() => {
-  //   //get request to "http:localhost:8000/api/products"
+  useEffect(() => {
+    console.log("USeeffect /App ", isLoggedIn);
+    if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
+      const { email, name, isAdmin } = jwtDecode(token);
 
+      dispatch({ type: USER_AUTHENTICATE, value: { email, fullName: name, isAdmin } })
+    }
+    console.log("USeeffect /App after dispatch : ", isLoggedIn);
+  }, [])
 
-  //   if (localStorage.getItem('token')) {
-  //     const token = localStorage.getItem('token');
-  //     const { email, name, isAdmin } = jwtDecode(token);
-  //     console.log("***** ", jwtDecode(token));
-
-  //     dispatch({ type: USER_AUTHENTICATE, value: { email, fullName: name, isAdmin } })
-  //   }
-
-  // }, [])
-
-  return <BrowserRouter>
+  return <BrowserRouter> {console.log("rendering.... /App ", isLoggedIn)}
     <div className="App">
       <Nav />
       <Routes>
@@ -37,11 +35,19 @@ function App() {
         <Route path='/users/signin' element={<SignIn />} />
         <Route path='/users/profile' element={<Profile />} />
         <Route path='/cart' element={<Cart />} />
-        <Route path='/checkout' element={<Checkout />} />
-        <Route path='/orders' element={<Orders />} />
+        <Route path='/checkout' element={
+          <PrivateRoute>
+            <Checkout />
+          </PrivateRoute>
+        } />
+        <Route path='/orders' element={
+          <PrivateRoute >
+            <Orders />
+          </PrivateRoute>
+        } />
         <Route path='/orders/:id' element={<SingleOrder />} />
         <Route path='/admin' element={<Admin />} >
-          <Route index element={<h1>main</h1>} />
+          <Route index element={<AdminChart />} />
           <Route path='products' element={<AdminProducts />} />
           <Route path='products/add' element={<AddProduct />} />
           <Route path='products/edit/:id' element={<EditProduct />} />

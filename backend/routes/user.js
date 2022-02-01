@@ -62,7 +62,6 @@ router.post('/signin', async (req, res) => {
         //compare passwords
         const decodedPassword = crypto.AES.decrypt(dbUser.password, cryptoJsSecretKey).toString(crypto.enc.Utf8);
         if (logInUserPassword === decodedPassword) {
-            console.log("User found sign in : ");
             //jwt token
             const payload = {
                 id: dbUser._id,
@@ -90,7 +89,6 @@ router.post('/signin', async (req, res) => {
 
     } else {
         // If user doesn't exist
-        console.log("User not found while sign in");
         res.status(404);
         res.json({ message: "Invalid User" });
     }

@@ -48,7 +48,8 @@ export default function SingleOrder() {
                         <p className='summary-text'>{paymentMethod}</p>
                     </div>
                 </div>
-                <Button>Undelivered</Button>
+                {status === "placed" && <Button>PLACED</Button>}
+                {status === "delivered" && <Button>DELIVERED</Button>}
                 <hr />
                 <div className="summary-total">
                     <div className="summary-total-left">

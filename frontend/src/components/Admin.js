@@ -1,12 +1,12 @@
 import jwtDecode from 'jwt-decode';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Link, Outlet } from 'react-router-dom';
 import { USER_AUTHENTICATE } from '../action';
 
 export default function Admin() {
 
-
+    const isAdmin = useSelector(state => state.user.user.isAdmin);
 
     // useEffect(() => {
     //     if (localStorage.getItem('token')) {
@@ -30,9 +30,10 @@ export default function Admin() {
     //     console.log("** !isl on admin.js", isLoggedIn, isAdmin, user);
     //     return <Navigate to='/users/signin' />
     // }
-    // if (!isAdmin) {
-    //     return <Navigate to='/orders' />
-    // }
+
+    if (!isAdmin) {
+        return <Navigate to='/' />
+    }
 
     return <div className='admin'>
         <div className="admin-sidebar">

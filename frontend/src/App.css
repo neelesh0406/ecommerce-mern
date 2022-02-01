@@ -38,7 +38,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 50px;
+  padding-bottom: 50px;
 }
 .product {
   width: 30%;
@@ -86,6 +86,23 @@
   letter-spacing: 1px;
 }
 
+/* Single Product */
+
+.single-product {
+  padding: 100px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.single-product-left {
+  margin-right: 100px;
+}
+.single-product-left img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, 0.17);
+}
+
 /* Form  */
 .add-product-form {
   width: 700px;
@@ -101,6 +118,8 @@
 }
 .add-product-form form > div {
   width: 50%;
+  min-width: 250px;
+  max-width: 300px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -269,10 +288,45 @@
   flex: 0.8;
   min-height: 100vh;
 }
+.admin-chart {
+  width: 700px;
+  margin: 50px auto;
+}
 
 /* General classes */
 
 @media (max-width: 1000px) {
+  /* Nav */
+  .nav a {
+    margin: 0 15px;
+    font-size: 15px;
+  }
+
+  /* Home - Products */
+  .products-catalog {
+    flex-direction: column;
+    width: 100%;
+    padding: 8px;
+    padding-bottom: 50px;
+  }
+  .product {
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  /* Single Product */
+  .single-product {
+    flex-direction: column;
+    padding: 20px;
+    justify-content: space-between;
+  }
+  .single-product-left {
+    margin: 0;
+  }
+  .single-product-right {
+    width: 100%;
+  }
+
   /* Cart */
   .cart {
     width: 80%;
@@ -283,5 +337,41 @@
   }
   .cart-left {
     flex-direction: column;
+  }
+
+  /* Orders */
+  .orders {
+    width: auto;
+    margin: 0;
+  }
+
+  /* Single Order */
+  .single-order-summary {
+    width: 95%;
+    padding: 30px 5px;
+  }
+  .summary-container {
+    flex-direction: column;
+    padding: 0 5px;
+  }
+  .summary-child {
+    margin: 10px 0;
+  }
+
+  /* Form */
+  .add-product-form {
+    width: 98%;
+  }
+
+  /* Admin */
+  .admin {
+    flex-direction: column;
+  }
+  .admin-sidebar {
+    padding: 10px;
+  }
+  .admin-chart {
+    width: 100%;
+    margin: 10px auto;
   }
 }

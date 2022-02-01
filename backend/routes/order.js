@@ -49,4 +49,30 @@ router.post('/checkout', verifyJWT, async (req, res) => {
     res.status(200).json(response);
 })
 
+// @route - PUT /api/orders/:id
+// @desc  - Update order status by ADMIN
+// @access- PROTECTED - ADMIN
+
+router.put('/:id', verifyJWT, async (req, res) => {
+
+    if (req.user.isAdmin) {
+        try {
+            const updatedOrder = await Order.findByIdAndUpdate(req.params.id, {
+                $set: {
+                    status: req.body.status
+                }
+            }, {
+                new: true
+            });
+            res.status(200).json(updatedOrder);
+
+        } catch (err) {
+            console.log(err);
+        }
+    } else {
+        res.status(500).json({ message: "Not authorised" });
+    }
+
+})
+
 module.exports = router;

@@ -44,7 +44,7 @@ export default function Orders() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {orders.map((item) => (
+                        {orders.length && orders.map((item) => (
                             <TableRow
                                 key={item._id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -55,7 +55,7 @@ export default function Orders() {
                                 <TableCell align="right">{item.amount}</TableCell>
                                 <TableCell align="right">{item.quantity}</TableCell>
                                 <TableCell align="right">{moment(item.createdAt).format("MMM Do YY")}</TableCell>
-                                <TableCell align="right">0</TableCell>
+                                <TableCell align="right">{item.status}</TableCell>
                                 <TableCell>
                                     <Link to={`/orders/${item._id}`}>
                                         <Tooltip title="View order details">

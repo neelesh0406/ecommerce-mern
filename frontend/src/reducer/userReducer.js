@@ -9,16 +9,19 @@ export const user = (state = initialUserState, action) => {
     switch (action.type) {
         case USER_SIGNUP:
             return {
+                ...state,
                 user: action.value,
                 isLoggedIn: true
             }
         case USER_AUTHENTICATE:
             return {
+                ...state,
                 user: action.value,
                 isLoggedIn: true,
             }
         case USER_LOGOUT:
             return {
+                ...state,
                 user: {},
                 isLoggedIn: false
             }

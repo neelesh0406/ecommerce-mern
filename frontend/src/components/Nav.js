@@ -9,6 +9,7 @@ import Badge from '@mui/material/Badge';
 export default function Nav() {
     const user = useSelector(state => state.user.user);
     const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+    const isAdmin = useSelector(state => state.user.user.isAdmin);
     const cartQuantity = useSelector(state => state.cart.cartQuantity);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -32,13 +33,14 @@ export default function Nav() {
                     <Link to="/users/signin"> Sign In </Link>
                 </div>
             }
+            {isLoggedIn && !isAdmin && <Link to='/orders'>Orders</Link>}
+
+            {isAdmin && <Link to='/admin'>Admin</Link>}
             <Link to='/cart'>
                 <Badge badgeContent={cartQuantity} color="secondary">
                     <ShoppingCart />
                 </Badge>
             </Link>
-            <Link to='/orders'>Orders</Link>
-            <Link to='/admin'>Admin</Link>
         </div>
     )
 }

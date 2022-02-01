@@ -9,16 +9,28 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import moment from 'moment';
-import { Link, Navigate } from 'react-router-dom';
-import { Tooltip } from '@mui/material';
-import { useSelector } from 'react-redux';
+
+import { Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { AdminOrdersItem } from './index';
+import { USER_AUTHENTICATE } from '../action';
+import jwtDecode from 'jwt-decode';
+
 
 export default function AdminOrders() {
-
     const [orders, setOrders] = useState([]);
-    const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+    const [isLoggedIn, setIsLoggedIn] = useState(useSelector(state => state.user.isLoggedIn));
+    const dispatch = useDispatch();
+    console.log("Rendering", isLoggedIn)
+
+    // useEffect(() => {
+    //     if (localStorage.getItem('token')) {
+    //         const token = localStorage.getItem('token');
+    //         const { email, name, isAdmin } = jwtDecode(token);
+    //         setIsLoggedIn(true);
+    //         dispatch({ type: USER_AUTHENTICATE, value: { email, fullName: name, isAdmin } })
+    //     }
+    // }, [])
 
     useEffect(() => {
         if (isLoggedIn) {
@@ -49,31 +61,13 @@ export default function AdminOrders() {
                         <TableCell align="right">Quantity</TableCell>
                         <TableCell align="right">Order date</TableCell>
                         <TableCell align="right">Status</TableCell>
-                        <TableCell align="right">User Id</TableCell>
+                        <TableCell align="center">User Id</TableCell>
+                        <TableCell align="right">Action</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {orders.length && orders.map((item) => (
-                        <TableRow
-                            key={item._id}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell component="th" scope="row">
-                                {item._id}
-                            </TableCell>
-                            <TableCell align="right">{item.amount}</TableCell>
-                            <TableCell align="right">{item.quantity}</TableCell>
-                            <TableCell align="right">{moment(item.createdAt).format("MMM Do YY")}</TableCell>
-                            <TableCell align="right">0</TableCell>
-                            <TableCell>{item.userId}</TableCell>
-                            <TableCell>
-                                <Link to={`/orders/${item._id}`}>
-                                    <Tooltip title="View order details">
-                                        <ArrowCircleRightIcon style={{ fontSize: "30px", border: "none" }} />
-                                    </Tooltip>
-                                </Link>
-                            </TableCell>
-                        </TableRow>
+                        <AdminOrdersItem item={item} key={item._id} />
                     ))}
                 </TableBody>
             </Table>

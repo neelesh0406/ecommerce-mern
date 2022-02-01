@@ -67,9 +67,7 @@ export default function AdminProducts() {
                     </Button>
                     <Button>
                         <span onClick={() => handleDeleteProduct(item._id)}>
-                            {/* <Link to={`/admin/products/delete/${item._id}`} style={{ color: "#1976d2" }}> */}
                             Delete Product
-                            {/* </Link> */}
                         </span>
                     </Button>
                     <Tooltip title={`Can${item.isPublished ? ' ' : 'not '}be seen by the buyer. Change this by editing the product`}>

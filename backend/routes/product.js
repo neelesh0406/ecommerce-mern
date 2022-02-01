@@ -41,17 +41,21 @@ router.get('/:id', async (req, res) => {
 // @access- PROTECTED - ADMIN
 router.put('/:id', verifyJWT, async (req, res) => {
 
-    try {
-        const updatedProduct = await Product.findByIdAndUpdate(
-            req.params.id,
-            {
-                $set: req.body,
-            },
-            { new: true }
-        );
-        res.status(200).json(updatedProduct);
-    } catch (err) {
-        res.json(err);
+    if (req.user.isAdmin) {
+        try {
+            const updatedProduct = await Product.findByIdAndUpdate(
+                req.params.id,
+                {
+                    $set: req.body,
+                },
+                { new: true }
+            );
+            res.status(200).json(updatedProduct);
+        } catch (err) {
+            res.json(err);
+        }
+    } else {
+        res.status(500).json({ message: "Not authorised" });
     }
 
 })
@@ -62,11 +66,15 @@ router.put('/:id', verifyJWT, async (req, res) => {
 // @access- PROTECTED - ADMIN
 router.delete('/:id', verifyJWT, async (req, res) => {
 
-    try {
-        const deleteResponse = await Product.findByIdAndDelete(req.params.id)
-        res.status(200).json(deleteResponse);
-    } catch (err) {
-        res.json(err);
+    if (req.user.isAdmin) {
+        try {
+            const deleteResponse = await Product.findByIdAndDelete(req.params.id)
+            res.status(200).json(deleteResponse);
+        } catch (err) {
+            res.json(err);
+        }
+    } else {
+        res.status(500).json({ message: "Not authorised" });
     }
 
 })

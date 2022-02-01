@@ -15,9 +15,11 @@ import SignUp from "./SignUp";
 import SingleOrder from "./SingleOrder";
 import SingleProduct from './SingleProduct';
 import EditProduct from './EditProduct';
+import AdminOrdersItem from "./AdminOrdersItem";
+import AdminChart from "./AdminChart";
 
 
-export { Nav, Home, ProductItem, AddProduct, SingleProduct, SignUp, SignIn, Profile, Cart, CartItem, Checkout, Orders, SingleOrder, Admin, AdminOrders, AdminProducts, EditProduct };
+export { Nav, Home, ProductItem, AddProduct, SingleProduct, SignUp, SignIn, Profile, Cart, CartItem, Checkout, Orders, SingleOrder, Admin, AdminOrders, AdminProducts, EditProduct, AdminOrdersItem, AdminChart };
 
 //This file contains imports of all the components
 // And exports it to the App component

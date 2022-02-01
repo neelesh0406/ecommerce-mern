@@ -2,7 +2,6 @@ import React from 'react';
 import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import LocalMallIcon from '@mui/icons-material/LocalMall';
 
 export default function ProductItem({ item, handleAddToCart }) {
     return <div className="product">
